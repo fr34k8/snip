@@ -78,6 +78,7 @@ sub print_usage {
   print "-h: Display help/usage\n";
   print "-V: Display version\n";
   print "-c: Check CMDB data\n";
+  print "-i: Input file (Default ./cmdb.xlsx)\n";
   print "\n";
   return;
 }
