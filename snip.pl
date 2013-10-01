@@ -6,7 +6,7 @@ use Getopt::Std;
 use Text::Iconv;
 
 # Name:         snip.pl 
-# Version:      0.0.1
+# Version:      0.0.2
 # Release:      1
 # License:      Open Source 
 # Group:        System
@@ -19,10 +19,14 @@ use Text::Iconv;
 
 # Changes       0.0.1 Tue  1 Oct 2013 09:15:04 EST
 #               Initial version
+#               0.0.2 Tue  1 Oct 2013 11:31:26 EST
+#               Cleaned up output messages
+#               0.0.3 Tue  1 Oct 2013 11:37:08 EST
+#               Added -i switch to choose input file
 
 my $script_name=$0;
 my $script_version=`cat $script_name | grep '^# Version' |awk '{print \$3}'`;
-my $options="chV";
+my $options="chVi:";
 my %option;
 my @cmdb_data;
 my $cmdb_file="cmdb.xlsx";
@@ -32,6 +36,12 @@ if ($#ARGV == -1) {
 }
 else {
   getopts($options,\%option);
+}
+
+# If given -i set input file to file given
+
+if ($option{'i'}) {
+  $cmdb_file=$option{'i'};
 }
 
 # If given -h print usage
@@ -51,10 +61,13 @@ if ($option{'V'}) {
 # If given -c check CMDB data
 
 if ($option{'c'}) {
+  check_local_env();
   import_cmdb_data();
   check_cmdb_data();
   exit;
 }
+
+# Do some local environment checks
 
 # Print usage
 
@@ -74,6 +87,15 @@ sub print_usage {
 sub print_version {
   print "$script_version";
   return;
+}
+
+# Check local environment
+
+sub check_local_env {
+  if (!-e "$cmdb_file") {
+    print "File $cmdb_file does not exist\n";
+    exit;
+  }
 }
 
 # Import CMDB
@@ -149,13 +171,13 @@ sub check_cmdb_data {
       print "$host_name does not contain any environment information (e.g. Dev / Prod / Test)\n";
     }
     if ($os_name!~/[A-z]/) {
-      print "$host_name does not contain any OS information (e.g. Dev / Prod / Test)\n";
+      print "$host_name does not contain any OS information\n";
     }
     if ($os_ver!~/[0-9]/) {
-      print "$host_name does not contain any OS version information (e.g. Dev / Prod / Test)\n";
+      print "$host_name does not contain any OS version information\n";
     }
     if ($os_rev!~/[0-9]/) {
-      print "$host_name does not contain any OS revision information (e.g. Dev / Prod / Test)\n";
+      print "$host_name does not contain any OS revision information\n";
     }
     if ($lc_status!~/operational|decom/) {
       print "$host_name does not contain any operational status information\n";
