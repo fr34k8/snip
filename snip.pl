@@ -6,7 +6,7 @@ use Getopt::Std;
 use Text::Iconv;
 
 # Name:         snip.pl 
-# Version:      0.0.2
+# Version:      0.0.3
 # Release:      1
 # License:      Open Source 
 # Group:        System

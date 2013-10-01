@@ -13,7 +13,7 @@ Usage
 	-h: Display help/usage
 	-V: Display version
 	-c: Check CMDB data
-        -i: Input file (Default ./cmdb.xlsx)
+	-i: Input file (Default ./cmdb.xlsx)
 
 Examples
 ========
