@@ -1,0 +1,9 @@
+# Changes
+# 0.0.1: Tue  1 Oct 2013 09:15:04 EST
+# Initial version
+# 0.0.2: Tue  1 Oct 2013 11:31:26 EST
+# Cleaned up output messages
+# 0.0.3: Tue  1 Oct 2013 11:37:08 EST
+# Added -i switch to choose input file
+# 0.0.4: Tue 17 Jun 2014 10:49:39 EST
+# Updated documentation and license
